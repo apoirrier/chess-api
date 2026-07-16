@@ -1,6 +1,6 @@
 from app.schemas.responses import FeedbackResponse
 from app.common.chess import extract_position_from_fen
-from common.feedback import good_feedback, bad_feedback, sicilian_feedback, french_feedback
+from app.common.feedback import good_feedback, bad_feedback, sicilian_feedback, french_feedback
 
 def evaluate_player_move(
     before: str,

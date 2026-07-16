@@ -5,7 +5,7 @@ good_feedback = Feedback(
 )
 
 bad_feedback = Feedback(
-    type=FeedbackType.BAD
+    type=FeedbackType.ERROR
 )
 
 sicilian_feedback = Feedback(

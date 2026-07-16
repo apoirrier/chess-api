@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from feedback import Feedback
+from app.schemas.feedback import Feedback
 
 class PlayComputerMoveResponse(BaseModel):
     move: str

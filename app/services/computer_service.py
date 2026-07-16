@@ -4,6 +4,7 @@ from app.common.chess import extract_position_from_fen
 def play_computer_move(fen: str) -> PlayComputerMoveResponse:
     position = extract_position_from_fen(fen)
     move = ""
+    print(f"Position: {position}")
     match position:
         case "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w":
             move="e4"
