@@ -1,11 +1,13 @@
 from app.schemas.feedback import Feedback, FeedbackType
 
 good_feedback = Feedback(
-    type=FeedbackType.SUCCESS
+    type=FeedbackType.SUCCESS,
+    message=""
 )
 
 bad_feedback = Feedback(
-    type=FeedbackType.ERROR
+    type=FeedbackType.ERROR,
+    message=""
 )
 
 sicilian_feedback = Feedback(

@@ -16,6 +16,6 @@ router = APIRouter(
 )
 def evaluate(request: EvaluatePlayerMoveRequest):
     return evaluate_player_move(
-        request.fen,
+        request.before,
         request.move,
     )

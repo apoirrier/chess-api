@@ -23,6 +23,18 @@ def evaluate_player_move(
                     feedback = sicilian_feedback
                 case _:
                     feedback = bad_feedback
+        case "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w":
+            match move:
+                case "Nf3":
+                    feedback = good_feedback
+                case _:
+                    feedback = bad_feedback
+        case "rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b":
+            match move:
+                case "Nc6":
+                    feedback = good_feedback
+                case _:
+                    feedback = bad_feedback
     return FeedbackResponse(
         feedback=feedback
     )
