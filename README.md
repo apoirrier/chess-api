@@ -51,6 +51,14 @@ python run.py
 
 Then open: `http://127.0.0.1:8000/`
 
+## Type checking and Linting
+
+```bash
+ruff check .
+ruff format .
+pyright
+```
+
 ## API Endpoints
 
 ### POST `/computer/play`
