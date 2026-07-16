@@ -1,10 +1,8 @@
 from pydantic import BaseModel
-
+from feedback import Feedback
 
 class PlayComputerMoveResponse(BaseModel):
     move: str
 
-
 class FeedbackResponse(BaseModel):
-    quality: str
-    message: str
+    feedback: Feedback

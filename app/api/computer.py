@@ -2,11 +2,11 @@ from fastapi import APIRouter
 
 from app.schemas.requests import PlayComputerMoveRequest
 from app.schemas.responses import PlayComputerMoveResponse
-from app.services.move_service import play_computer_move
+from app.services.computer_service import play_computer_move
 
 router = APIRouter(
-    prefix="/moves",
-    tags=["Moves"],
+    prefix="/computer",
+    tags=["Computer"],
 )
 
 

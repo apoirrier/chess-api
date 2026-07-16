@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.api.moves import router as moves_router
+from app.api.computer import router as computer_router
 from app.api.feedback import router as feedback_router
 
 app = FastAPI(
@@ -8,7 +8,7 @@ app = FastAPI(
     version="0.1.0",
 )
 
-app.include_router(moves_router)
+app.include_router(computer_router)
 app.include_router(feedback_router)
 
 
