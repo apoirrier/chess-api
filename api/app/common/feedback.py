@@ -1,4 +1,5 @@
-from app.schemas.feedback import Feedback, FeedbackType
+from app.schemas.feedback import Feedback
+from app.common.feedback_type import FeedbackType
 
 good_feedback = Feedback(type=FeedbackType.SUCCESS, message="")
 

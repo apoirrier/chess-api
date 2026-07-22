@@ -4,6 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.computer import router as computer_router
 from app.api.feedback import router as feedback_router
 
+from app.db.base import Base
+from app.db.session import engine
+
+import app.db.models
+
 app = FastAPI(
     title="Chess Opening Trainer API",
     version="0.1.0",
@@ -19,6 +24,7 @@ app.add_middleware(
 app.include_router(computer_router)
 app.include_router(feedback_router)
 
+Base.metadata.create_all(bind=engine)
 
 @app.get("/")
 def root():
