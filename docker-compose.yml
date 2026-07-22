@@ -1,0 +1,44 @@
+services:
+  api:
+    container_name: chess-api
+    build: .
+    cap_drop:
+      - ALL
+    ports:
+      - 8000:8000
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 50M
+    restart: unless-stopped
+    environment:
+      - DATABASE_PORT=5432
+      - DATABASE_HOST=db
+      - DATABASE_DB=chess
+    secrets:
+      - database_password
+  db:
+    image: postgres
+    user: "999:999"
+    container_name: chess-api-db
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 500M
+    shm_size: 128mb
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=chess
+      - POSTGRES_PASSWORD_FILE=/run/secrets/database_password
+    secrets:
+      - database_password
+
+
+
+secrets:
+  database_password:
+    file: ./database_password
