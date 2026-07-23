@@ -15,7 +15,8 @@ router = APIRouter(
     response_model=FeedbackResponse,
 )
 def evaluate(request: EvaluatePlayerMoveRequest):
-    return evaluate_player_move(
+    feedback = evaluate_player_move(
         request.before,
         request.move,
     )
+    return FeedbackResponse(feedback=feedback)

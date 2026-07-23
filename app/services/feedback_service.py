@@ -1,5 +1,5 @@
-from app.schemas.responses import FeedbackResponse
 from app.common.chess import extract_position_from_fen
+from app.schemas.feedback import Feedback
 from app.common.feedback import (
     good_feedback,
     bad_feedback,
@@ -11,7 +11,7 @@ from app.common.feedback import (
 def evaluate_player_move(
     before: str,
     move: str,
-) -> FeedbackResponse:
+) -> Feedback:
     position = extract_position_from_fen(before)
     feedback = bad_feedback
     match position:
@@ -41,4 +41,4 @@ def evaluate_player_move(
                     feedback = good_feedback
                 case _:
                     feedback = bad_feedback
-    return FeedbackResponse(feedback=feedback)
+    return feedback
