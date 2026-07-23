@@ -1,7 +1,10 @@
-from sqlalchemy import Enum as SQLEnum, String, ForeignKey
+from sqlalchemy import Enum as SQLEnum
+from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
-from app.common.feedback_type import FeedbackType
+
 from app.db.base import Base
+from app.schemas.feedback_type import FeedbackType
+
 
 class Feedback(Base):
     __tablename__ = "feedback"
@@ -10,4 +13,4 @@ class Feedback(Base):
     type: Mapped[FeedbackType] = mapped_column(SQLEnum(FeedbackType), nullable=False)
     message: Mapped[str | None] = mapped_column(String(200), nullable=True)
     move: Mapped[str] = mapped_column(String(10), nullable=False)
-    position_id: Mapped[int] = mapped_column(ForeignKey("positions.id"), nullable=False)
+    fen: Mapped[str] = mapped_column(String(100), nullable=False)

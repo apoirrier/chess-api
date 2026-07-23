@@ -1,13 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+import app.db.models
 from app.api.computer import router as computer_router
 from app.api.feedback import router as feedback_router
-
 from app.db.base import Base
 from app.db.session import engine
-
-import app.db.models
 
 app = FastAPI(
     title="Chess Opening Trainer API",

@@ -1,3 +1,3 @@
-from .feedback import Feedback
-from .computer_move import ComputerMove
-from .position import Position
+from .computer_move import ComputerMove as ComputerMove
+from .feedback import Feedback as Feedback
+from .position import Position as Position
