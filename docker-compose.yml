@@ -15,6 +15,7 @@ services:
     environment:
       - DATABASE_PORT=5432
       - DATABASE_HOST=db
+      - DATABASE_USER=chessuser
       - DATABASE_DB=chess
     secrets:
       - database_password
@@ -33,10 +34,12 @@ services:
     restart: unless-stopped
     environment:
       - POSTGRES_DB=chess
+      - POSTGRES_USER=chessuser
       - POSTGRES_PASSWORD_FILE=/run/secrets/database_password
     secrets:
       - database_password
-
+    volumes:
+      - ./db-data:/var/lib/postgresql
 
 
 secrets:
