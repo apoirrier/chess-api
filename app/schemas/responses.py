@@ -9,3 +9,7 @@ class PlayComputerMoveResponse(BaseModel):
 
 class FeedbackResponse(BaseModel):
     feedback: Feedback
+
+
+class ImportPGNResponse(BaseModel):
+    message: str

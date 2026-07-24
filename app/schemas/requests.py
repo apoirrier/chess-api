@@ -8,3 +8,7 @@ class PlayComputerMoveRequest(BaseModel):
 class EvaluatePlayerMoveRequest(BaseModel):
     before: str
     move: str
+
+
+class ImportPGNRequest(BaseModel):
+    pgn: str

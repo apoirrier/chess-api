@@ -17,6 +17,7 @@ services:
       - DATABASE_HOST=db
       - DATABASE_USER=chessuser
       - DATABASE_DB=chess
+      - AUTHORIZED_FRONTENDS=http://localhost:5173
     secrets:
       - database_password
   db:
