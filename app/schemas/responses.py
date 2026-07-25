@@ -5,6 +5,7 @@ from app.schemas.feedback import Feedback
 
 class PlayComputerMoveResponse(BaseModel):
     move: str
+    message: str
 
 
 class FeedbackResponse(BaseModel):

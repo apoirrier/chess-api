@@ -15,5 +15,5 @@ router = APIRouter(
     response_model=PlayComputerMoveResponse,
 )
 def play_move(request: PlayComputerMoveRequest):
-    move = play_computer_move(request.fen)
-    return PlayComputerMoveResponse(move=move)
+    move, message = play_computer_move(request.fen)
+    return PlayComputerMoveResponse(move=move, message=message)
