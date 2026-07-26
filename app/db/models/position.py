@@ -13,7 +13,7 @@ class Position(Base):
     __tablename__ = "positions"
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    fen: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
+    epd: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
     
     computer_moves: Mapped[list["ComputerMove"]] = relationship(
         "ComputerMove",

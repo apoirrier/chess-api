@@ -5,7 +5,7 @@ import chess.pgn
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 
-from app.common.chess import extract_position_from_fen
+from app.common.chess import epd_from_fen, get_color_from_epd
 from app.db.models import ComputerMove, Position
 from app.db.models import Feedback as FeedbackDB
 from app.db.session import SessionLocal
@@ -15,14 +15,14 @@ from app.schemas.feedback_type import FeedbackType
 def add_computer_move(before: str, move: str, comment: str):
     with SessionLocal() as session:
         stmt = insert(Position).values(
-            fen=before
+            epd=before
         ).on_conflict_do_nothing(
-            index_elements=["fen"]
+            index_elements=["epd"]
         )
         session.execute(stmt)
 
         position = session.scalar(
-            select(Position).where(Position.fen == before)
+            select(Position).where(Position.epd == before)
         )
         if position is None:
             raise ValueError("Une erreur de base de données est survenue.")
@@ -49,24 +49,24 @@ def add_player_move(before: str, move: str, comment: str):
 
     with SessionLocal() as session:
         stmt = insert(FeedbackDB).values(
-            fen=before,
+            epd=before,
             move=move,
             type=feedback_type,
             message=comment,
         ).on_conflict_do_nothing(
-            constraint="uq_fen_move"
+            constraint="uq_epd_move"
         )
         session.execute(stmt)
         session.commit()
 
 def process_move(before: str, move: str, comment: str, player: str):
-    if before[-1] == player:
+    if get_color_from_epd(before) == player:
         add_player_move(before, move, comment)
     else:
         add_computer_move(before, move, comment)
 
 def browse_pgn(node: chess.pgn.GameNode, board: chess.Board, player: str):
-    before = extract_position_from_fen(board.fen())
+    before = epd_from_fen(board.fen())
     new_board = chess.Board(before)
 
     if node.move is not None:
@@ -91,8 +91,3 @@ def import_pgn(pgn: str):
 
     board = game.board()
     browse_pgn(game, board, player)
-
-if __name__ == "__main__":
-    with open("pgn.pgn", "r") as f:
-        pgn = f.read()
-    import_pgn(pgn)

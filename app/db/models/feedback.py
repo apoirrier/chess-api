@@ -13,8 +13,8 @@ class Feedback(Base):
     type: Mapped[FeedbackType] = mapped_column(SQLEnum(FeedbackType), nullable=False)
     message: Mapped[str | None] = mapped_column(String(200), nullable=True)
     move: Mapped[str] = mapped_column(String(10), nullable=False)
-    fen: Mapped[str] = mapped_column(String(100), nullable=False)
+    epd: Mapped[str] = mapped_column(String(100), nullable=False)
 
     __table_args__ = (
-        UniqueConstraint("fen", "move", name="uq_fen_move"),
+        UniqueConstraint("epd", "move", name="uq_epd_move"),
     )
