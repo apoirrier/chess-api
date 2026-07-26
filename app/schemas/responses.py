@@ -14,3 +14,6 @@ class FeedbackResponse(BaseModel):
 
 class ImportPGNResponse(BaseModel):
     message: str
+
+class OpeningNameResponse(BaseModel):
+    name: str

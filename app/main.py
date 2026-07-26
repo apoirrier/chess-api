@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import app.db.models
 from app.api.computer import router as computer_router
 from app.api.feedback import router as feedback_router
+from app.api.opening_name import router as opening_name_router
 from app.api.pgn import router as pgn_router
 from app.db.base import Base
 from app.db.session import engine
@@ -27,6 +28,7 @@ app.add_middleware(
 
 app.include_router(computer_router)
 app.include_router(feedback_router)
+app.include_router(opening_name_router)
 app.include_router(pgn_router)
 
 Base.metadata.create_all(bind=engine)

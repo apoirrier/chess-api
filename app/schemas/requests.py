@@ -12,3 +12,7 @@ class EvaluatePlayerMoveRequest(BaseModel):
 
 class ImportPGNRequest(BaseModel):
     pgn: str
+
+
+class OpeningNameRequest(BaseModel):
+    fen: str
