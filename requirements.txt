@@ -3,6 +3,7 @@ uvicorn
 pydantic
 sqlalchemy
 psycopg[binary]
+python-chess
 # Dev dependencies
 ruff
 pyright
