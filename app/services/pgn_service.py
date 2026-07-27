@@ -53,8 +53,12 @@ def add_player_move(before: str, move: str, comment: str):
             move=move,
             type=feedback_type,
             message=comment,
-        ).on_conflict_do_nothing(
-            constraint="uq_epd_move"
+        ).on_conflict_do_update(
+            constraint="uq_epd_move",
+            set_={
+                "type": feedback_type,
+                "message": comment,
+            }
         )
         session.execute(stmt)
         session.commit()
