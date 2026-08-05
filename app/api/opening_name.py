@@ -14,7 +14,7 @@ router = APIRouter(
     "",
     response_model=OpeningNameResponse,
 )
-def evaluate(request: OpeningNameRequest):
+def opening(request: OpeningNameRequest):
     opening_name = get_opening_name(
         request.fen,
     )

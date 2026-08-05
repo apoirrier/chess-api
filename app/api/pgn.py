@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException
 
+from app.api.deps import CurrentUser
 from app.schemas.requests import ImportPGNRequest
 from app.schemas.responses import ImportPGNResponse
 from app.services.pgn_service import import_pgn
@@ -14,7 +15,7 @@ router = APIRouter(
     "",
     response_model=ImportPGNResponse,
 )
-def play_move(request: ImportPGNRequest):
+def pgn_import(request: ImportPGNRequest, user: CurrentUser):
     try:
         import_pgn(request.pgn)
         return ImportPGNResponse(message="success")

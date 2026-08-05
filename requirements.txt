@@ -4,6 +4,8 @@ pydantic
 sqlalchemy
 psycopg[binary]
 python-chess
+pyjwt[crypto]
+httpx
 # Dev dependencies
 ruff
 pyright

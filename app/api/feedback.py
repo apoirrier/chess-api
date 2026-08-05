@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 
+from app.api.deps import CurrentUser
 from app.schemas.requests import EvaluatePlayerMoveRequest
 from app.schemas.responses import FeedbackResponse
 from app.services.feedback_service import evaluate_player_move
@@ -14,7 +15,7 @@ router = APIRouter(
     "/evaluate",
     response_model=FeedbackResponse,
 )
-def evaluate(request: EvaluatePlayerMoveRequest):
+def evaluate(request: EvaluatePlayerMoveRequest, user: CurrentUser):
     feedback = evaluate_player_move(
         request.before,
         request.move,

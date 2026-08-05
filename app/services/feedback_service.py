@@ -1,9 +1,9 @@
 from sqlalchemy import select
 
-from app.common.chess import epd_from_fen
 from app.db.models import Feedback as FeedbackDB
 from app.db.session import SessionLocal
 from app.schemas.feedback import Feedback, bad_feedback
+from app.services.chess import epd_from_fen
 
 
 def evaluate_player_move(

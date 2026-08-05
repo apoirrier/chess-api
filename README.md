@@ -9,27 +9,41 @@ A small FastAPI application that provides chess opening training support:
 ```
 backend/ 
 ├── app/ 
-│ ├── main.py                FastAPI app configuration
+│ ├── main.py                    FastAPI app configuration
 │ ├── api/ 
-│ │ ├── computer.py          /computer/play route
-│ │ └── feedback.py          /feedback/evaluate route
-│ │ 
-│ ├── common/ 
-│ │ ├── chess.py             Helper functions for chess
-│ │ └── feedback.py          Feedback definitions
-│ │ 
+│ │ ├── computer.py              /computer/play route
+│ │ ├── deps.py                  dependencies, used for authentication
+│ │ ├── feedback.py              /feedback/evaluate route
+│ │ ├── opening_name.py          /opening-name route
+│ │ └── pgn.py                   /pgn route
+│ │
+│ ├── db/ 
+│ │ ├── base.py                  Base class for DB models
+│ │ ├── session.py               Connection to database
+│ │ └── db/ 
+│ │   ├── __init__.py            Export models
+│ │   ├── computer_move.py       DB model for computer moves
+│ │   ├── feedback.py            DB model for feedbacks
+│ │   └── position.py            DB model for positions
+│ │
 │ ├── schemas/ 
-│ │ ├── feedback.py          Feedback model and types
-│ │ ├── requests.py          Request payload models
-│ │ └── responses.py         Response payload models
+│ │ ├── feedback_type.py         Feedback type type
+│ │ ├── feedback.py              Feedback schema
+│ │ ├── requests.py              Requests schemas
+│ │ └── responses.py             Responses schemas
 │ │ 
-│ ├── services/ 
-│ │ ├── computer_service.py  Computer move logic
-│ │ └── feedback_service.py  Player move feedback logic
-│ │ 
-├── README.md                README file
-├── requirements.txt         Dependencies file
-└── run.py                   Application endpoint
+│ └── services/ 
+│   ├── auth_service.py          Authentication verification
+│   ├── chess.py                 Chess helper functions
+│   ├── computer_service.py      Computer move logic
+│   ├── feedback_service.py      Player move feedback logic
+│   ├── opening_name_service.py  Opening name logic
+│   └── pgn_service.py           Import PGN logic
+│
+├── opening_names/               Folder for adding opening names to database 
+├── README.md                    README file
+├── requirements.txt             Dependencies file
+└── run.py                       Application endpoint
 ```
 
 ## Requirements

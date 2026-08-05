@@ -5,11 +5,11 @@ import chess.pgn
 from sqlalchemy import select
 from sqlalchemy.dialects.postgresql import insert
 
-from app.common.chess import epd_from_fen, get_color_from_epd
 from app.db.models import ComputerMove, Position
 from app.db.models import Feedback as FeedbackDB
 from app.db.session import SessionLocal
 from app.schemas.feedback_type import FeedbackType
+from app.services.chess import epd_from_fen, get_color_from_epd
 
 
 def add_computer_move(before: str, move: str, comment: str):
