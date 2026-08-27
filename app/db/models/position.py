@@ -15,7 +15,7 @@ class Position(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     epd: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
     opening_name: Mapped[str|None] = mapped_column(String(100), nullable=True)
-    
+
     computer_moves: Mapped[list["ComputerMove"]] = relationship(
         "ComputerMove",
         back_populates="position"

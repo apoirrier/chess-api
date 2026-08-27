@@ -17,7 +17,6 @@ services:
       - DATABASE_HOST=db
       - DATABASE_USER=chessuser
       - DATABASE_DB=chess
-      - OIDC_AUDIENCE=chess-api
     env_file: .env
     secrets:
       - database_password

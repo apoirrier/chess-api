@@ -1,6 +1,13 @@
+from enum import Enum
+
 from pydantic import BaseModel
 
 from app.schemas.feedback import Feedback
+
+
+class Status(str, Enum):
+    SUCCESS = "success"
+    ERROR = "error"
 
 
 class PlayComputerMoveResponse(BaseModel):
@@ -17,3 +24,7 @@ class ImportPGNResponse(BaseModel):
 
 class OpeningNameResponse(BaseModel):
     name: str
+
+class BasicResponse(BaseModel):
+    status: Status
+    message: str

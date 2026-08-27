@@ -16,3 +16,8 @@ class ImportPGNRequest(BaseModel):
 
 class OpeningNameRequest(BaseModel):
     fen: str
+
+class EndVariationRequest(BaseModel):
+    pgn: str
+    errorMade: bool
+    playerColor: str
