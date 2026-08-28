@@ -19,6 +19,7 @@ def play_move(request: PlayComputerMoveRequest, user: CurrentUser):
     move, message = play_computer_move(request.fen)
     return PlayComputerMoveResponse(move=move, message=message)
 
+
 @router.post(
     "/end-variation",
     response_model=BasicResponse,

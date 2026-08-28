@@ -7,6 +7,7 @@ OIDC_AUDIENCE = os.environ.get("OIDC_AUDIENCE", "")
 
 jwks_client = jwt.PyJWKClient(f"{OIDC_ISSUER}/protocol/openid-connect/certs")
 
+
 def get_user_info_from_token(token: str) -> dict:
     signing_key = jwks_client.get_signing_key_from_jwt(token)
 

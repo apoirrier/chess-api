@@ -16,15 +16,14 @@ class ComputerMove(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     move: Mapped[str] = mapped_column(String(10), nullable=False)
     message: Mapped[str] = mapped_column(String(200), nullable=False)
-    next_repetition: Mapped[datetime.date] = mapped_column(Date, nullable=False, default=datetime.date.today)
+    next_repetition: Mapped[datetime.date] = mapped_column(
+        Date, nullable=False, default=datetime.date.today
+    )
     repetition_bucket: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     position_id: Mapped[int] = mapped_column(ForeignKey("positions.id"), nullable=False)
 
     position: Mapped["Position"] = relationship(
-        "Position",
-        back_populates="computer_moves"
+        "Position", back_populates="computer_moves"
     )
 
-    __table_args__ = (
-        UniqueConstraint("position_id", "move", name="uq_position_move"),
-    )
+    __table_args__ = (UniqueConstraint("position_id", "move", name="uq_position_move"),)

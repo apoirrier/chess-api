@@ -20,7 +20,4 @@ def pgn_import(request: ImportPGNRequest, user: CurrentUser):
         import_pgn(request.pgn)
         return ImportPGNResponse(message="success")
     except ValueError as e:
-        raise HTTPException(
-            status_code=400,
-            detail=str(e)
-        )
+        raise HTTPException(status_code=400, detail=str(e))

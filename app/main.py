@@ -33,6 +33,7 @@ app.include_router(pgn_router)
 
 Base.metadata.create_all(bind=engine)
 
+
 @app.get("/")
 def root():
     return {"message": "Chess Opening Trainer API."}

@@ -8,6 +8,7 @@ from app.services.auth_service import get_user_info_from_token
 
 logger = logging.getLogger(__name__)
 
+
 def current_user(authorization: str = Header()):
     scheme, token = authorization.split()
     if scheme.lower() != "bearer":
@@ -19,5 +20,6 @@ def current_user(authorization: str = Header()):
     except PyJWTError as e:
         logger.error(f"JWT error: {e}")
         raise HTTPException(status_code=401)
+
 
 CurrentUser = Annotated[dict, Depends(current_user)]

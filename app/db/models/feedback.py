@@ -15,6 +15,4 @@ class Feedback(Base):
     move: Mapped[str] = mapped_column(String(10), nullable=False)
     epd: Mapped[str] = mapped_column(String(100), nullable=False)
 
-    __table_args__ = (
-        UniqueConstraint("epd", "move", name="uq_epd_move"),
-    )
+    __table_args__ = (UniqueConstraint("epd", "move", name="uq_epd_move"),)

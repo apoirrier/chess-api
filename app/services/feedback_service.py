@@ -14,15 +14,9 @@ def evaluate_player_move(
     feedback = bad_feedback
     with SessionLocal() as session:
         feedback_db = session.scalar(
-            select(FeedbackDB).where(
-                FeedbackDB.epd == epd,
-                FeedbackDB.move == move
-            )
+            select(FeedbackDB).where(FeedbackDB.epd == epd, FeedbackDB.move == move)
         )
         if feedback_db:
-            feedback = Feedback(
-                type = feedback_db.type,
-                message = feedback_db.message
-            )
+            feedback = Feedback(type=feedback_db.type, message=feedback_db.message)
 
     return feedback
