@@ -6,6 +6,7 @@ from app.schemas.feedback_type import FeedbackType
 class Feedback(BaseModel):
     type: FeedbackType
     message: str | None = None
+    solution: str | None = None
 
 
 good_feedback = Feedback(type=FeedbackType.SUCCESS, message="")
