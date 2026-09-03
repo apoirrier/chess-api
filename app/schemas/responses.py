@@ -13,6 +13,8 @@ class Status(str, Enum):
 class PlayComputerMoveResponse(BaseModel):
     move: str
     message: str
+    date: str | None = None
+    bucket: int | None = None
 
 
 class FeedbackResponse(BaseModel):

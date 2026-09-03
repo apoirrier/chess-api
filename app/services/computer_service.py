@@ -12,10 +12,12 @@ from app.services.chess import epd_from_fen
 from app.services.repetition_service import backpropagate
 
 
-def play_computer_move(fen: str) -> tuple[str, str]:
+def play_computer_move(fen: str) -> tuple[str, str, str | None, int | None]:
     epd = epd_from_fen(fen)
     move = ""
     message = ""
+    date = None
+    bucket = None
     with SessionLocal() as session:
         position = session.scalar(select(Position).where(Position.epd == epd))
         if position and len(position.computer_moves) > 0:
@@ -31,7 +33,9 @@ def play_computer_move(fen: str) -> tuple[str, str]:
             random_move = random.choice(moves)
             move = random_move.move
             message = random_move.message
-    return move, message
+            date = random_move.next_repetition.strftime('%d/%m')
+            bucket = random_move.repetition_bucket
+    return move, message, date, bucket
 
 
 def end_variation(pgn: str, error_made: bool, player_color: str) -> tuple[Status, str]:
