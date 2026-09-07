@@ -92,6 +92,8 @@ def get_oldest_date_from_fen(fen: str) -> datetime.date:
 
 def backpropagate(board: chess.Board, player: chess.Color, default_bucket: int):
     next_date = None
+    # Do not process the last position
+    board.pop()
     while True:
         try:
             move = board.pop()
