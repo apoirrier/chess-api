@@ -70,7 +70,7 @@ def _update_next_repetition(fen: str, san: str, next_date: datetime.date):
         session.commit()
 
 
-def _get_oldest_date(fen: str) -> datetime.date:
+def get_oldest_date_from_fen(fen: str) -> datetime.date:
     epd = epd_from_fen(fen)
     with SessionLocal() as session:
         position = session.scalar(select(Position).where(Position.epd == epd))
@@ -102,6 +102,6 @@ def backpropagate(board: chess.Board, player: chess.Color, default_bucket: int):
                 next_date = _update_leaf(board.fen(), board.san(move), default_bucket)
             else:
                 _update_next_repetition(board.fen(), board.san(move), next_date)
-            next_date = _get_oldest_date(board.fen())
+            next_date = get_oldest_date_from_fen(board.fen())
         except IndexError:
             break

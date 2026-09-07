@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+from app.schemas.player_color import PlayerColor
+
 
 class PlayComputerMoveRequest(BaseModel):
     fen: str
@@ -21,4 +23,4 @@ class OpeningNameRequest(BaseModel):
 class EndVariationRequest(BaseModel):
     pgn: str
     errorMade: bool
-    playerColor: str
+    playerColor: PlayerColor

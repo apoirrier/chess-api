@@ -2,8 +2,16 @@ from fastapi import APIRouter
 
 from app.api.deps import CurrentUser
 from app.schemas.requests import EndVariationRequest, PlayComputerMoveRequest
-from app.schemas.responses import BasicResponse, PlayComputerMoveResponse
-from app.services.computer_service import end_variation, play_computer_move
+from app.schemas.responses import (
+    BasicResponse,
+    PlayComputerMoveResponse,
+    PlayerColorResponse,
+)
+from app.services.computer_service import (
+    end_variation,
+    get_player_color,
+    play_computer_move,
+)
 
 router = APIRouter(
     prefix="/computer",
@@ -11,11 +19,20 @@ router = APIRouter(
 )
 
 
+@router.get(
+    "/first",
+    response_model=PlayerColorResponse,
+)
+def player_color_route(user: CurrentUser):
+    player_color = get_player_color()
+    return PlayerColorResponse(playerColor=player_color)
+
+
 @router.post(
     "/play",
     response_model=PlayComputerMoveResponse,
 )
-def play_move(request: PlayComputerMoveRequest, user: CurrentUser):
+def play_move_route(request: PlayComputerMoveRequest, user: CurrentUser):
     move, message, date = play_computer_move(request.fen)
     return PlayComputerMoveResponse(move=move, message=message, date=date)
 

@@ -22,7 +22,7 @@ AUTHORIZED_FRONTENDS = AUTHORIZED_FRONTENDS_ENV.split(",")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=AUTHORIZED_FRONTENDS,
-    allow_methods=["POST", "OPTIONS"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Accept", "Authorization"],
 )
 
