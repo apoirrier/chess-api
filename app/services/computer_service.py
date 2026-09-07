@@ -30,10 +30,10 @@ def play_computer_move(fen: str) -> tuple[str, str, str | None]:
     move = ""
     message = ""
     date = None
-    oldest_date = get_oldest_date_from_fen(fen)
     with SessionLocal() as session:
         position = session.scalar(select(Position).where(Position.epd == epd))
         if position and len(position.computer_moves) > 0:
+            oldest_date = get_oldest_date_from_fen(fen)
             moves = session.scalars(
                 select(ComputerMove).where(
                     ComputerMove.position_id == position.id,
